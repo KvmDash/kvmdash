@@ -34,7 +34,7 @@
 
 #### 1. Repository klonen:
 ```bash
-git clone https://github.com/zerlix/KVMDash.git kvmdash
+git clone https://github.com/KvmDash/kvmdash.git kvmdash
 cd kvmdash
 ```
 
