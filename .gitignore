@@ -1,6 +1,7 @@
 # Frontend
-/frontend/node_modules
-/frontend/dist
+/frontend/node_modules/
+/frontend/dist/
+/frontend/logs/
 /frontend/.env.local
 
 # Backend
