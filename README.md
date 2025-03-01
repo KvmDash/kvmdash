@@ -3,7 +3,7 @@
 <table style="border-collapse: collapse; width: 100%;">
     <tr>
         <td style="width: 150px; padding: 10px; vertical-align: middle;">
-            <img src="src/assets/kvmdash.svg" alt="KvmDash Logo" style="max-width: 100%;">
+            <img src="frontend/src/assets/kvmdash.svg" alt="KvmDash Logo" style="max-width: 100%;">
         </td>
         <td style="padding: 10px; vertical-align: middle;">
             KVMDash ist eine Webanwendung, die die Verwaltung von Virtual Machines (VMs) auf Linux-Systemen ermöglicht. 
@@ -11,7 +11,6 @@
         </td>
     </tr>
 </table>
-
 
 
 ## Features
@@ -25,26 +24,13 @@
 * Übersichtliche Darstellung der Systemleistung für eine optimale Kontrolle und Fehleranalyse.
 
 
-## Videos
 
+## Installation Frontend
 
-https://github.com/user-attachments/assets/44dbd85b-9263-4ad5-aaa6-afdb6e12e2c8
-
-
-
-## Voraussetzung
+### Voraussetzung
 
 * Node.js 18.x oder neuer
 * npm 9.x oder neuer
-
-**Ein Linux-System mit:**
-* Installiertem KVM (Kernel-based Virtual Machine).
-* Installiertem libvirt für die Verwaltung von Virtualisierungsressourcen.
-* Installiertem KVMDash-API - https://github.com/zerlix/KVMDash-API
-
-
-
-## Installation Frontend
 
 #### 1. Repository klonen:
 ```bash
@@ -74,14 +60,6 @@ npm install
 npm run dev
 ```
 
-## Konfiguration
-**API Endpoint konfiguration**
-
-In der Datei .env muss die VITE_API_URL auf den API Host zeigen
-
-```bash
-VITE_API_URL=http://kvmdash.back/api
-```
 
 
 
