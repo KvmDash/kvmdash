@@ -44,7 +44,7 @@ https://github.com/user-attachments/assets/44dbd85b-9263-4ad5-aaa6-afdb6e12e2c8
 
 
 
-## Installation
+## Installation Frontend
 
 #### 1. Repository klonen:
 ```bash
@@ -59,8 +59,9 @@ git submodule update --init --recursive
 
 #### 3. SPICE HTML5 Client konfigurieren
 ```bash
-cp src/assets/spice-html5/package.json.in src/assets/spice-html5/package.json
-sed -i 's/VERSION/0.3/g' src/assets/spice-html5/package.json
+cd frontend/src/assets/spice-html5
+cp package.json.in package.json
+sed -i 's/VERSION/0.3/g' package.json
 ```
 
 ####  4. Dependencies installieren:
