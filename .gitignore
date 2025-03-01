@@ -1,0 +1,9 @@
+# Frontend
+/frontend/node_modules
+/frontend/dist
+/frontend/.env.local
+
+# Backend
+/backend/var
+/backend/vendor
+/backend/.env.local
