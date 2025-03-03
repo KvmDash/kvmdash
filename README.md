@@ -25,39 +25,129 @@
 
 
 
-## Installation Frontend
+## Installation
 
 ### Voraussetzung
 
 * Node.js 18.x oder neuer
 * npm 9.x oder neuer
+* Composer 2.x
+* libvirt und libvirt-dev
 
-#### 1. Repository klonen:
+#### 1. Installation der Voraussetzungen auf Ubuntu/Debian:
+```bash
+# Node.js und npm
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# PHP und Extensions
+sudo apt install php8.2 php8.2-xml php8.2-curl php8.2-mysql php8.2-mbstring php8.2-zip
+
+# Composer
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+
+# MySQL
+sudo apt install mysql-server
+
+# Libvirt
+sudo apt install libvirt-dev libvirt-daemon-system php-libvirt-php
+```
+
+#### 2. Repository klonen:
 ```bash
 git clone https://github.com/KvmDash/kvmdash.git kvmdash
 cd kvmdash
 ```
 
-####  2. Submodule initialisieren und aktualisieren (für [Spice Client](https://gitlab.freedesktop.org/spice/spice-html5))
+####  3. Submodule initialisieren und aktualisieren (für [Spice Client](https://gitlab.freedesktop.org/spice/spice-html5))
 ```bash
 git submodule update --init --recursive
 ```
 
-#### 3. SPICE HTML5 Client konfigurieren
+
+## Backend
+
+#### 1. Umgebungsvariablen konfigurieren:
+```bash
+# .env.local erstellen
+cp .env .env.local
+
+# .env.local anpassen (wichtige Einstellungen):
+# APP_ENV=dev
+# APP_SECRET=IhrGeheimesSecret
+# DATABASE_URL="mysql://user:password@127.0.0.1:3306/kvmdash"
+# JWT_SECRET_KEY=%kernel.project_dir%/config/jwt/private.pem
+# JWT_PUBLIC_KEY=%kernel.project_dir%/config/jwt/public.pem
+# JWT_PASSPHRASE=IhrJWTPassphrase
+```
+
+#### 2. JWT Schlüssel generieren:
+```bash
+mkdir -p config/jwt
+openssl genpkey -out config/jwt/private.pem -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096
+openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem -pubout
+```
+
+#### 3. Datenbank einrichten:
+```bash
+# Datenbank erstellen
+php bin/console doctrine:database:create
+
+# Migrations ausführen
+php bin/console doctrine:migrations:migrate
+```
+
+#### 4. Entwicklungsserver starten:
+```bash
+# Mit PHP's eingebautem Server
+php -S localhost:8001 -t public/
+
+# Oder mit Symfony CLI
+symfony server:start
+```
+
+### 5. API Dokumentation
+Die API-Dokumentation ist nach dem Start des Servers verfügbar unter:
+```
+https://127.0.0.1:8001/api/docs
+```
+
+
+## Frontend 
+
+#### 1. SPICE HTML5 Client konfigurieren
 ```bash
 cd frontend/src/assets/spice-html5
 cp package.json.in package.json
 sed -i 's/VERSION/0.3/g' package.json
 ```
 
-####  4. Dependencies installieren:
+####  2. Dependencies installieren:
 ```bash
 npm install
 ```
 
-####  5. Entwicklungsserver starten:
+####  3. Entwicklungsserver starten:
 ```bash
 npm run dev
+```
+
+#### 4. Vite Konfiguration anpassen:
+Öffne die Datei `vite.config.ts` und füge die folgende Konfiguration hinzu, um den Entwicklungsserver zu starten und API-Anfragen an das Backend weiterzuleiten:
+
+```javascript
+    server: {
+        port: 5173,
+        proxy: {
+            // Proxy API-Anfragen zum Backend
+            '/api': {
+                target: 'https://localhost:8001',
+                changeOrigin: true,
+                secure: false,
+            }
+        }
+    }
 ```
 
 
