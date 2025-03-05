@@ -134,20 +134,12 @@ npm run dev
 ```
 
 #### 4. Vite Konfiguration anpassen:
-Öffne die Datei `vite.config.ts` und füge die folgende Konfiguration hinzu, um den Entwicklungsserver zu starten und API-Anfragen an das Backend weiterzuleiten:
+Öffne die Datei `src/config.ts` und füge die folgende Konfiguration hinzu, um den Entwicklungsserver zu starten und API-Anfragen an das Backend weiterzuleiten:
 
 ```javascript
-    server: {
-        port: 5173,
-        proxy: {
-            // Proxy API-Anfragen zum Backend
-            '/api': {
-                target: 'https://localhost:8001',
-                changeOrigin: true,
-                secure: false,
-            }
-        }
-    }
+const BACKEND_PORT = 8001;
+export const BACKEND_HOST = '192.168.0.200';
+export const API_BASE_URL = `https://${BACKEND_HOST}:${BACKEND_PORT}`;
 ```
 
 
