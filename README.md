@@ -101,7 +101,7 @@ php bin/console doctrine:migrations:migrate
 #### 4. Entwicklungsserver starten:
 ```bash
 # Mit PHP's eingebautem Server
-php -S localhost:8001 -t public/
+php -S localhost:8000 -t public/
 
 # Oder mit Symfony CLI
 symfony server:start
@@ -137,7 +137,7 @@ npm run dev
 Öffne die Datei `src/config.ts` und füge die folgende Konfiguration hinzu, um den Entwicklungsserver zu starten und API-Anfragen an das Backend weiterzuleiten:
 
 ```javascript
-const BACKEND_PORT = 8001;
+const BACKEND_PORT = 8000;
 export const BACKEND_HOST = '192.168.0.200';
 export const API_BASE_URL = `https://${BACKEND_HOST}:${BACKEND_PORT}`;
 ```
