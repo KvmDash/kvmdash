@@ -32,27 +32,31 @@ Die Virtual Host Konfiguration muss unter `/etc/apache2/sites-available/001-kvmd
     ServerName kvmdash
     DocumentRoot /var/www/kvmdash/frontend/dist
 
-    # Frontend Routes zu index.html weiterleiten
+    # Debug Logging
+    LogLevel debug alias:trace8
+    ErrorLog ${APACHE_LOG_DIR}/kvmdash_error.log
+    CustomLog ${APACHE_LOG_DIR}/kvmdash_access.log combined
+
+    # Frontend
     <Directory /var/www/kvmdash/frontend/dist>
+        Options -Indexes +FollowSymLinks
         AllowOverride None
         Require all granted
         FallbackResource /index.html
     </Directory>
 
-    # Backend API unter /api
-    Alias /api /var/www/kvmdash/backend/public
+    # Backend API
+    AliasMatch "^/api" "/var/www/kvmdash/backend/public/index.php"
     <Directory /var/www/kvmdash/backend/public>
-        AllowOverride None
+        Options FollowSymLinks
+        AllowOverride All
         Require all granted
-        FallbackResource /index.php
-        
-        Header set Access-Control-Allow-Origin "*"
-        Header set Access-Control-Allow-Methods "GET,POST,PUT,DELETE,PATCH,OPTIONS"
-        Header set Access-Control-Allow-Headers "Content-Type,Authorization,X-Requested-With"
-    </Directory>
 
-    ErrorLog ${APACHE_LOG_DIR}/kvmdash_error.log
-    CustomLog ${APACHE_LOG_DIR}/kvmdash_access.log combined
+        SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+        Header always set Access-Control-Allow-Origin "*"
+        Header always set Access-Control-Allow-Methods "GET,POST,PUT,DELETE,OPTIONS"
+        Header always set Access-Control-Allow-Headers "Authorization,Content-Type"
+    </Directory>
 </VirtualHost>
 ```
 
@@ -85,7 +89,7 @@ tail -f /var/log/apache2/kvmdash_access.log
 
 ## Struktur
 
-- Frontend (Vue.js): `/home/zerlix/www/html/frontend/dist`
+- Frontend (vite): `/home/zerlix/www/html/frontend/dist`
 - Backend (Symfony): `/home/zerlix/www/html/backend/public`
 - API Endpunkt: `http://kvmdash/api`
 
