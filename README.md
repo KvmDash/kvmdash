@@ -41,7 +41,7 @@ https://github.com/user-attachments/assets/ec76e8fa-f9b1-487d-87a8-6d370dbfb73c
 * Composer 2.x
 * libvirt und libvirt-dev
 
-#### 1. Installation der Voraussetzungen auf Ubuntu/Debian:
+#### 1. Installation der Voraussetzungen auf Debian:
 ```bash
 # Node.js und npm
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
