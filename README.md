@@ -12,6 +12,17 @@
     </tr>
 </table>
 
+## 📑 Inhaltsverzeichnis
+- [Features](#features)
+- [Demo-Videos](#demo-videos)
+- [Systemvoraussetzungen](#systemvoraussetzungen)
+- [Installation](#installation)
+  - [1. Systemvoraussetzungen installieren](#1-systemvoraussetzungen-installieren)
+  - [2. KVMDash installieren](#2-kvmdash-installieren)
+  - [3. Backend einrichten](#3-backend-einrichten)
+  - [4. Frontend einrichten](#4-frontend-einrichten)
+  - [5. Webserver einrichten](#5-webserver-einrichten)
+- [Dokumentation](#dokumentation)
 
 ## Features
 
@@ -23,60 +34,84 @@
 * Echtzeitüberwachung von Ressourcen wie CPU, Arbeitsspeicher, Festplattenauslastung und weiteren wichtigen Systemmetriken.
 * Übersichtliche Darstellung der Systemleistung für eine optimale Kontrolle und Fehleranalyse.
 
-
-## Videos
-
-
+## Demo-Videos
 
 https://github.com/user-attachments/assets/ec76e8fa-f9b1-487d-87a8-6d370dbfb73c
 
-
-
-## Installation
-
-### Voraussetzung
+## Systemvoraussetzungen
 
 * Node.js 18.x oder neuer
 * npm 9.x oder neuer
 * Composer 2.x
-* libvirt und libvirt-dev
+* KVM und libvirt
+* Apache Webserver mit PHP 8.2
 
-#### 1. Installation der Voraussetzungen auf Debian:
+## Installation
+
+### 1. Systemvoraussetzungen installieren
+
+#### KVM/QEMU und Libvirt
+Für die vollständige Anleitung zur Installation von KVM unter Debian, siehe [KVM Installation Guide](docs/kvm-Debian.md).
+
+```bash
+# Kurzversion: KVM und Libvirt installieren
+apt update
+apt install qemu-kvm qemu-utils libvirt-daemon-system virtinst bridge-utils
+```
+
+Detaillierte Anleitung zur Konfiguration von Libvirt: [Libvirt Konfiguration](docs/libvirt-Debian.md)
+
+#### Node.js und npm
 ```bash
 # Node.js und npm
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt install -y nodejs
+```
 
+#### PHP und Extensions
+```bash
 # PHP und Extensions
 sudo apt install php8.2 php8.2-xml php8.2-curl php8.2-mysql php8.2-mbstring php8.2-zip
+```
 
+#### Composer
+```bash
 # Composer
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
+```
 
+#### MySQL
+```bash
 # MySQL
 sudo apt install mysql-server
-
-# Libvirt
-sudo apt install libvirt-dev libvirt-daemon-system php-libvirt-php
 ```
 
-#### 2. Repository klonen:
+#### Webserver
+Apache Konfiguration für KVMDash: [Apache Setup Guide](docs/apache-Debian.md)
 ```bash
-git clone https://github.com/KvmDash/kvmdash.git kvmdash
-cd kvmdash
+# Apache und benötigte Module
+sudo apt install apache2
+sudo a2enmod headers rewrite alias
 ```
 
-####  3. Submodule initialisieren und aktualisieren (für [Spice Client](https://gitlab.freedesktop.org/spice/spice-html5))
+### 2. KVMDash installieren
+
 ```bash
+# Repository klonen
+git clone https://github.com/KvmDash/kvmdash.git /var/www/kvmdash
+cd /var/www/kvmdash
+
+# Submodule initialisieren und aktualisieren (für Spice Client)
 git submodule update --init --recursive
 ```
 
+### 3. Backend einrichten
 
-## Backend
-
-#### 1. Umgebungsvariablen konfigurieren:
 ```bash
+# Im Backend-Verzeichnis
+cd /var/www/kvmdash
+
 # .env.local erstellen
 cp .env .env.local
 
@@ -87,66 +122,64 @@ cp .env .env.local
 # JWT_SECRET_KEY=%kernel.project_dir%/config/jwt/private.pem
 # JWT_PUBLIC_KEY=%kernel.project_dir%/config/jwt/public.pem
 # JWT_PASSPHRASE=IhrJWTPassphrase
-```
 
-#### 2. JWT Schlüssel generieren:
-```bash
+# JWT Schlüssel generieren
 mkdir -p config/jwt
 openssl genpkey -out config/jwt/private.pem -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096
 openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem -pubout
-```
 
-#### 3. Datenbank einrichten:
-```bash
-# Datenbank erstellen
+# Datenbank einrichten
 php bin/console doctrine:database:create
-
-# Migrations ausführen
 php bin/console doctrine:migrations:migrate
 ```
 
-#### 4. Entwicklungsserver starten:
+### 4. Frontend einrichten
+
 ```bash
-# Mit PHP's eingebautem Server
-php -S localhost:8000 -t public/
-
-# Oder mit Symfony CLI
-symfony server:start
-```
-
-### 5. API Dokumentation
-Die API-Dokumentation ist nach dem Start des Servers verfügbar unter:
-```
-https://127.0.0.1:8001/api/docs
-```
-
-
-## Frontend 
-
-#### 1. SPICE HTML5 Client konfigurieren
-```bash
-cd frontend/src/assets/spice-html5
+# SPICE HTML5 Client konfigurieren
+cd /var/www/kvmdash/frontend/src/assets/spice-html5
 cp package.json.in package.json
 sed -i 's/VERSION/0.3/g' package.json
-```
 
-####  2. Dependencies installieren:
-```bash
+# Ins Frontend-Verzeichnis wechseln
+cd /var/www/kvmdash/frontend
+
+# Dependencies installieren
 npm install
+
+# Vite Konfiguration anpassen
+# Öffne die Datei src/config.ts und passe die Backend-Einstellungen an
 ```
 
-####  3. Entwicklungsserver starten:
-```bash
-npm run dev
-```
-
-#### 4. Vite Konfiguration anpassen:
-Öffne die Datei `src/config.ts` und füge die folgende Konfiguration hinzu, um den Entwicklungsserver zu starten und API-Anfragen an das Backend weiterzuleiten:
-
+Beispiel für `src/config.ts`:
 ```javascript
 const BACKEND_PORT = 8000;
 export const BACKEND_HOST = '192.168.0.200';
 ```
+
+### 5. Webserver einrichten
+
+Kopiere die Apache-Konfiguration aus dem docs-Verzeichnis:
+
+```bash
+cp /var/www/kvmdash/docs/001-kvmdash.conf /etc/apache2/sites-available/
+sudo a2ensite 001-kvmdash.conf
+sudo systemctl reload apache2
+```
+
+Vollständige Anleitung zur Apache-Konfiguration: [Apache Einrichtung](docs/apache-Debian.md)
+
+## Dokumentation
+
+Die API-Dokumentation ist nach dem Start des Servers verfügbar unter:
+```
+https://your-server/api/docs
+```
+
+Weitere Dokumentation:
+- [KVM Installation und Konfiguration](docs/kvm-Debian.md)
+- [Libvirt Einrichtung und Verwaltung](docs/libvirt-Debian.md)
+- [Apache Webserver Konfiguration](docs/apache-Debian.md)
 
 
 
