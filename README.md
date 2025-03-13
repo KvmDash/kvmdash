@@ -22,6 +22,7 @@
   - [3. Backend einrichten](#3-backend-einrichten)
   - [4. Frontend einrichten](#4-frontend-einrichten)
   - [5. Webserver einrichten](#5-webserver-einrichten)
+  - [6. Direktes Testen ohne Apache (Entwicklungsumgebung)](#6-direktes-testen-ohne-apache-entwicklungsumgebung)
 - [Dokumentation](#dokumentation)
 
 ## Features
@@ -163,8 +164,12 @@ npm install
 
 Beispiel für `src/config.ts`:
 ```javascript
-const BACKEND_PORT = 8000;
-export const BACKEND_HOST = '192.168.0.200';
+/// Testumgebung
+// export const BACKEND_PORT = 8000; // Port des Backends
+// export const BACKEND_HOST = 'localhost'; // Hostname/IP-Adresse des Backends
+
+export const BACKEND_PORT = 80; // Port des Backends
+export const BACKEND_HOST = 'kvmdash'; // Hostname/IP-Adresse des Backends
 ```
 
 ### 5. Webserver einrichten
@@ -178,6 +183,36 @@ sudo systemctl reload apache2
 ```
 
 Vollständige Anleitung zur Apache-Konfiguration: [Apache Einrichtung](docs/apache-Debian.md)
+
+### 6. Direktes Testen ohne Apache (Entwicklungsumgebung)
+
+Für schnelles Testen oder Entwicklung kann KVMDash auch ohne Apache ausgeführt werden:
+
+#### Backend mit Symfony Development Server
+
+```bash
+# Im Backend-Verzeichnis
+cd /var/www/kvmdash/backend
+
+# Symfony Development Server starten (alle IPs erlauben)
+symfony server:start --allow-all-ip
+```
+
+Der Backend-Server ist nun unter `http://your-ip:8000` erreichbar.
+
+#### Frontend mit Vite Development Server
+
+```bash
+# In einem neuen Terminal, im Frontend-Verzeichnis
+cd /var/www/kvmdash/frontend
+
+# Vite Dev Server starten
+npm run dev
+```
+
+Der Frontend-Server ist standardmäßig unter `http://localhost:5173` verfügbar.
+
+> **Hinweis:** Diese Methode ist nur für Entwicklung und Tests gedacht. Für Produktivumgebungen wird die Apache-Konfiguration empfohlen.
 
 ## Dokumentation
 
