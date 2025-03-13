@@ -1,7 +1,6 @@
 # Apache Konfiguration für KVM Dashboard
 
-Diese Anleitung beschreibt die Apache-Konfiguration für das KVM Dashboard Projekt.
-
+Diese Anleitung beschreibt die Apache-Konfiguration für das KVM Dashboard.
 ## Voraussetzungen
 
 - Apache 2.4 oder höher
@@ -33,7 +32,6 @@ Die Virtual Host Konfiguration muss unter `/etc/apache2/sites-available/001-kvmd
     DocumentRoot /var/www/kvmdash/frontend/dist
 
     # Debug Logging
-    LogLevel debug alias:trace8
     ErrorLog ${APACHE_LOG_DIR}/kvmdash_error.log
     CustomLog ${APACHE_LOG_DIR}/kvmdash_access.log combined
 
@@ -89,8 +87,8 @@ tail -f /var/log/apache2/kvmdash_access.log
 
 ## Struktur
 
-- Frontend (vite): `/home/zerlix/www/html/frontend/dist`
-- Backend (Symfony): `/home/zerlix/www/html/backend/public`
+- Frontend (vite): `/var/www/kvmdash/frontend/dist`
+- Backend (Symfony): `/var/www/kvmdash/www/html/backend/public`
 - API Endpunkt: `http://kvmdash/api`
 
 ## Fehlerbehebung
