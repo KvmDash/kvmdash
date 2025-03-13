@@ -31,7 +31,6 @@
 https://github.com/user-attachments/assets/ec76e8fa-f9b1-487d-87a8-6d370dbfb73c
 
 
-https://github.com/user-attachments/assets/44dbd85b-9263-4ad5-aaa6-afdb6e12e2c8
 
 ## Installation
 
