@@ -81,10 +81,17 @@ curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 ```
 
-#### MySQL
+#### Datenbank
+KVMDash verwendet Doctrine ORM und unterstützt verschiedene Datenbanksysteme:
+
 ```bash
 # MySQL
 sudo apt install mysql-server
+
+# Oder PostgreSQL
+# sudo apt install postgresql
+
+# SQLite wird ohne zusätzliche Installation unterstützt
 ```
 
 #### Webserver
@@ -118,7 +125,10 @@ cp .env .env.local
 # .env.local anpassen (wichtige Einstellungen):
 # APP_ENV=dev
 # APP_SECRET=IhrGeheimesSecret
-# DATABASE_URL="mysql://user:password@127.0.0.1:3306/kvmdash"
+# Datenbankverbindung (wählen Sie eine der folgenden Optionen):
+# MySQL: DATABASE_URL="mysql://user:password@127.0.0.1:3306/kvmdash"
+# PostgreSQL: DATABASE_URL="postgresql://user:password@127.0.0.1:5432/kvmdash?serverVersion=15&charset=utf8"
+# SQLite: DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
 # JWT_SECRET_KEY=%kernel.project_dir%/config/jwt/private.pem
 # JWT_PUBLIC_KEY=%kernel.project_dir%/config/jwt/public.pem
 # JWT_PASSPHRASE=IhrJWTPassphrase
