@@ -226,6 +226,22 @@ Weitere Dokumentation:
 - [Libvirt Einrichtung und Verwaltung](docs/libvirt-Debian.md)
 - [Apache Webserver Konfiguration](docs/apache-Debian.md)
 
+## TurnKey Linux Kompatibilität
+
+KVMDash arbeitet nahtlos mit [TurnKey Linux](https://www.turnkeylinux.org/) Images zusammen. Mit TurnKey Linux erhalten Sie Zugriff auf über 100 vorgefertigte, gebrauchsfertige Server-Appliances, die auf Debian basieren.
+
+### Vorteile der Integration:
+- **Schnelle Bereitstellung**: Sofortige Einsatzbereitschaft spezialisierter Server ohne aufwendige Konfiguration
+- **Breites Angebot**: Von Webserver-Stacks (LAMP, LEMP) über CMS (WordPress, Drupal) bis hin zu Kollaborationstools
+- **Sicherheit**: Regelmäßig aktualisierte, gehärtete Images mit automatischen Sicherheitsupdates
+
+### Verwendung von TurnKey Images in KVMDash:
+1. Laden Sie das gewünschte TurnKey Image von der offiziellen Webseite herunter
+2. Importieren Sie das Image in KVMDash als VM-Vorlage
+3. Erstellen Sie neue VMs basierend auf diesen Vorlagen mit nur wenigen Klicks
+
+TurnKey Images bieten eine ideale Ergänzung zu KVMDash, um schnell produktive Serverumgebungen bereitzustellen, ohne aufwendige manuelle Konfigurationen durchführen zu müssen.
+
 
 
 
