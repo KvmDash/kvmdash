@@ -228,7 +228,7 @@ Weitere Dokumentation:
 
 ## TurnKey Linux Kompatibilität
 
-KVMDash arbeitet nahtlos mit [TurnKey Linux](https://www.turnkeylinux.org/) Images zusammen. Mit TurnKey Linux erhalten Sie Zugriff auf über 100 vorgefertigte, gebrauchsfertige Server-Appliances, die auf Debian basieren.
+KVMDash arbeitet nahtlos mit [TurnKey Linux](http://mirror.turnkeylinux.org/turnkeylinux/images/iso/) Images zusammen. Mit TurnKey Linux erhalten Sie Zugriff auf über 100 vorgefertigte, gebrauchsfertige Server-Appliances, die auf Debian basieren.
 
 ### Vorteile der Integration:
 - **Schnelle Bereitstellung**: Sofortige Einsatzbereitschaft spezialisierter Server ohne aufwendige Konfiguration
