@@ -101,6 +101,12 @@ Apache Konfiguration für KVMDash: [Apache Setup Guide](docs/apache-Debian.md)
 # Apache und benötigte Module
 sudo apt install apache2
 sudo a2enmod headers rewrite alias
+
+# Webserver-Benutzer zu den erforderlichen Gruppen hinzufügen
+sudo usermod -aG libvirt-qemu,libvirt,kvm www-data
+
+# Webserver neustarten, um Gruppenänderungen zu übernehmen
+sudo systemctl restart apache2
 ```
 
 ### 2. KVMDash installieren
@@ -142,6 +148,9 @@ openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem -pubout
 # Datenbank einrichten
 php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate
+
+# Ersten Admin-Benutzer anlegen
+php bin/console app:create-user --admin "admin@example.com" "IhrPasswort"
 ```
 
 ### 4. Frontend einrichten
