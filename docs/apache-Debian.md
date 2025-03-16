@@ -35,16 +35,28 @@ Die Virtual Host Konfiguration muss unter `/etc/apache2/sites-available/001-kvmd
     ErrorLog ${APACHE_LOG_DIR}/kvmdash_error.log
     CustomLog ${APACHE_LOG_DIR}/kvmdash_access.log combined
 
-    # Frontend
+    # Frontend ZUERST, aber mit Ausnahme für /api und /bundles
     <Directory /var/www/kvmdash/frontend/dist>
         Options -Indexes +FollowSymLinks
         AllowOverride None
         Require all granted
-        FallbackResource /index.html
+        
+        RewriteEngine On
+        # Wenn Anfrage mit /api oder /bundles beginnt, nicht weiterleiten
+        RewriteCond %{REQUEST_URI} !^/(api|bundles)
+        
+        # Wenn Datei nicht existiert, zu index.html weiterleiten
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteRule ^ index.html [L]
     </Directory>
 
-    # Backend API
+    # Backend API 
     AliasMatch "^/api" "/var/www/kvmdash/backend/public/index.php"
+    
+    # API Platform Assets
+    Alias "/bundles" "/var/www/kvmdash/backend/public/bundles"
+    
+    # Backend Verzeichnisse
     <Directory /var/www/kvmdash/backend/public>
         Options FollowSymLinks
         AllowOverride All
@@ -54,6 +66,12 @@ Die Virtual Host Konfiguration muss unter `/etc/apache2/sites-available/001-kvmd
         Header always set Access-Control-Allow-Origin "*"
         Header always set Access-Control-Allow-Methods "GET,POST,PUT,DELETE,OPTIONS"
         Header always set Access-Control-Allow-Headers "Authorization,Content-Type"
+    </Directory>
+
+    <Directory /var/www/kvmdash/backend/public/bundles>
+        Options -Indexes +FollowSymLinks
+        AllowOverride None
+        Require all granted
     </Directory>
 </VirtualHost>
 ```
