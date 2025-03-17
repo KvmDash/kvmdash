@@ -52,7 +52,7 @@ https://github.com/user-attachments/assets/ec76e8fa-f9b1-487d-87a8-6d370dbfb73c
 ### 1. Systemvoraussetzungen installieren
 
 #### KVM/QEMU und Libvirt
-Für die vollständige Anleitung zur Installation von KVM unter Debian, siehe [KVM Installation Guide](docs/kvm-Debian.md).
+Für die vollständige Anleitung zur Installation von KVM unter Debian, siehe [KVM Installation Guide](docs/de/kvm-Debian.md).
 
 ```bash
 # Kurzversion: KVM und Libvirt installieren
@@ -60,7 +60,7 @@ apt update
 apt install qemu-kvm qemu-utils libvirt-daemon-system virtinst bridge-utils
 ```
 
-Detaillierte Anleitung zur Konfiguration von Libvirt: [Libvirt Konfiguration](docs/libvirt-Debian.md)
+Detaillierte Anleitung zur Konfiguration von Libvirt: [Libvirt Konfiguration](docs/de/libvirt-Debian.md)
 
 #### Node.js und npm
 ```bash
@@ -96,7 +96,7 @@ sudo apt install mysql-server
 ```
 
 #### Webserver
-Apache Konfiguration für KVMDash: [Apache Setup Guide](docs/apache-Debian.md)
+Apache Konfiguration für KVMDash: [Apache Setup Guide](docs/de/apache-Debian.md)
 ```bash
 # Apache und benötigte Module
 sudo apt install apache2
@@ -191,7 +191,7 @@ sudo a2ensite 001-kvmdash.conf
 sudo systemctl reload apache2
 ```
 
-Vollständige Anleitung zur Apache-Konfiguration: [Apache Einrichtung](docs/apache-Debian.md)
+Vollständige Anleitung zur Apache-Konfiguration: [Apache Einrichtung](docs/de/apache-Debian.md)
 
 ### 6. Direktes Testen ohne Apache (Entwicklungsumgebung)
 
@@ -231,9 +231,9 @@ https://your-server/api/docs
 ```
 
 Weitere Dokumentation:
-- [KVM Installation und Konfiguration](docs/kvm-Debian.md)
-- [Libvirt Einrichtung und Verwaltung](docs/libvirt-Debian.md)
-- [Apache Webserver Konfiguration](docs/apache-Debian.md)
+- [KVM Installation und Konfiguration](docs/de/kvm-Debian.md)
+- [Libvirt Einrichtung und Verwaltung](docs/de/libvirt-Debian.md)
+- [Apache Webserver Konfiguration](docs/de/apache-Debian.md)
 
 ## TurnKey Linux Kompatibilität
 
