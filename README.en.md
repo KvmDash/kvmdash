@@ -52,7 +52,7 @@ https://github.com/user-attachments/assets/ec76e8fa-f9b1-487d-87a8-6d370dbfb73c
 ### 1. Install System Requirements
 
 #### KVM/QEMU and Libvirt
-For complete instructions on installing KVM on Debian, see [KVM Installation Guide](docs/kvm-Debian.md).
+For complete instructions on installing KVM on Debian, see [KVM Installation Guide](docs/en/kvm-Debian.md).
 
 ```bash
 # Short version: Install KVM and Libvirt
@@ -60,7 +60,7 @@ apt update
 apt install qemu-kvm qemu-utils libvirt-daemon-system virtinst bridge-utils
 ```
 
-Detailed guide for Libvirt configuration: [Libvirt Configuration](docs/libvirt-Debian.md)
+Detailed guide for Libvirt configuration: [Libvirt Configuration](docs/en/libvirt-Debian.md)
 
 #### Node.js and npm
 ```bash
@@ -96,7 +96,7 @@ sudo apt install mysql-server
 ```
 
 #### Web Server
-Apache configuration for KVMDash: [Apache Setup Guide](docs/apache-Debian.md)
+Apache configuration for KVMDash: [Apache Setup Guide](docs/en/apache-Debian.md)
 ```bash
 # Apache and required modules
 sudo apt install apache2
@@ -186,12 +186,12 @@ export const BACKEND_HOST = 'kvmdash'; // Backend hostname/IP address
 Copy the Apache configuration from the docs directory:
 
 ```bash
-cp /var/www/kvmdash/docs/001-kvmdash.conf /etc/apache2/sites-available/
+cp /var/www/kvmdash/docs/en/001-kvmdash.conf /etc/apache2/sites-available/
 sudo a2ensite 001-kvmdash.conf
 sudo systemctl reload apache2
 ```
 
-Complete guide for Apache configuration: [Apache Setup](docs/apache-Debian.md)
+Complete guide for Apache configuration: [Apache Setup](docs/en/apache-Debian.md)
 
 ### 6. Direct Testing Without Apache (Development Environment)
 
@@ -231,9 +231,9 @@ https://your-server/api/docs
 ```
 
 Additional documentation:
-- [KVM Installation and Configuration](docs/kvm-Debian.md)
-- [Libvirt Setup and Management](docs/libvirt-Debian.md)
-- [Apache Web Server Configuration](docs/apache-Debian.md)
+- [KVM Installation and Configuration](docs/en/kvm-Debian.md)
+- [Libvirt Setup and Management](docs/en/libvirt-Debian.md)
+- [Apache Web Server Configuration](docs/en/apache-Debian.md)
 
 ## TurnKey Linux Compatibility
 
