@@ -12,6 +12,8 @@
     </tr>
 </table>
 
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FKvmDash%2Fkvmdash.svg?type=shield&issueType=security)](https://app.fossa.com/projects/git%2Bgithub.com%2FKvmDash%2Fkvmdash?ref=badge_shield&issueType=security)
+
 ## 📑 Table of Contents
 - [Features](#features)
 - [Demo Videos](#demo-videos)
