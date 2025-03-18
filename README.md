@@ -12,7 +12,7 @@
     </tr>
 </table>
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FKvmDash%2Fkvmdash.svg?type=shield&issueType=security)](https://app.fossa.com/projects/git%2Bgithub.com%2FKvmDash%2Fkvmdash?ref=badge_shield&issueType=security) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FKvmDash%2Fkvmdash.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2FKvmDash%2Fkvmdash?ref=badge_small)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FKvmDash%2Fkvmdash.svg?type=shield&issueType=security)](https://app.fossa.com/projects/git%2Bgithub.com%2FKvmDash%2Fkvmdash?ref=badge_shield&issueType=security) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FKvmDash%2Fkvmdash.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2FKvmDash%2Fkvmdash?ref=badge_shield&issueType=license)
 
 ## 📑 Table of Contents
 - [Features](#features)
