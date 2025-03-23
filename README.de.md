@@ -1,7 +1,6 @@
-# Projektbeschreibung: KVMDash
 # KvmDash
 
-**WICHTIG:** Ab Version **v03** ist dieses Repository veraltet und wird nicht mehr weiterentwickelt.
+⚠️ **WICHTIG:** Ab Version **v03** ist dieses Repository veraltet und wird nicht mehr weiterentwickelt.
 
 Bitte beachte, dass das Projekt in zwei separate Repositories aufgeteilt wurde:
 
