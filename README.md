@@ -1,5 +1,18 @@
 # Project Description: KVMDash
 
+# KvmDash
+
+**IMPORTANT:** As of version **v03**, this repository is no longer maintained and has been archived. It is now read-only.
+
+Please refer to the new repositories for active development:
+
+- **Frontend:** [KvmDash.front](https://github.com/KvmDash/KvmDash.front)
+- **Backend:** [KvmDash.back](https://github.com/KvmDash/KvmDash.back)
+
+For updates, bug fixes, and new features, please visit the repositories listed above.
+
+
+
 <table style="border-collapse: collapse; width: 100%;">
     <tr>
         <td style="width: 150px; padding: 10px; vertical-align: middle;">
