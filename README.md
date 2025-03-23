@@ -1,8 +1,7 @@
-# Project Description: KVMDash
+# KVMDash
 
-# KvmDash
 
-**IMPORTANT:** As of version **v03**, this repository is no longer maintained and has been archived. It is now read-only.
+⚠️ **IMPORTANT:** As of version **v03**, this repository is no longer maintained and has been archived. It is now read-only.
 
 Please refer to the new repositories for active development:
 
